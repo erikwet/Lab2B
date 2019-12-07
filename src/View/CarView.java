@@ -1,5 +1,4 @@
-package GUI;
-
+package View;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -19,7 +18,7 @@ public class CarView extends JFrame {
 
     // The controller member
 
-    DrawPanel drawPanel = new DrawPanel(X, Y - 240);
+    public DrawPanel drawPanel = new DrawPanel(X, Y - 240);
 
     JPanel controlPanel = new JPanel();
     JPanel gasPanel = new JPanel();
@@ -108,35 +107,35 @@ public class CarView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    void startAllCarsButton(ActionListener listenForButton) {
+    public void startAllCarsButton(ActionListener listenForButton) {
         startButton.addActionListener(listenForButton);
     }
 
-    void stopAllCarsButton(ActionListener listenForButton) {
+    public void stopAllCarsButton(ActionListener listenForButton) {
         stopButton.addActionListener(listenForButton);
     }
 
-    void gasButton(ActionListener listenForButton) {
+    public void gasButton(ActionListener listenForButton) {
         gasButton.addActionListener(listenForButton);
     }
 
-    void brakeButton(ActionListener listenForButton) {
+    public void brakeButton(ActionListener listenForButton) {
         brakeButton.addActionListener(listenForButton);
     }
 
-    void turboOffButton(ActionListener listenForButton) {
+    public void turboOffButton(ActionListener listenForButton) {
         turboOffButton.addActionListener(listenForButton);
     }
 
-    void turboOnButton(ActionListener listenForButton) {
+    public void turboOnButton(ActionListener listenForButton) {
         turboOnButton.addActionListener(listenForButton);
     }
 
-    void lowerFlatbedButton(ActionListener listenForButton) {
+    public void lowerFlatbedButton(ActionListener listenForButton) {
         lowerBedButton.addActionListener(listenForButton);
     }
 
-    void raiseFlatbedButton(ActionListener listenForButton) {
+    public void raiseFlatbedButton(ActionListener listenForButton) {
         liftBedButton.addActionListener(listenForButton);
     }
 }

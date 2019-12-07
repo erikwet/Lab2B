@@ -1,9 +1,8 @@
-package GUI;
-
+package Controller;
 import Model.MotorizedVehicle;
 import Model.Saab95;
 import Model.Scania;
-import Model.Volvo240;
+import View.CarView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,16 +22,15 @@ public class CarController {
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    public Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
     private CarView frame;
     // A list of cars, modify if needed
-    ArrayList<MotorizedVehicle> cars = new ArrayList<>();
+    public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
 
     public CarController(CarView frame){
         this.frame = frame;
-
         this.frame.startAllCarsButton(new StartAllCarsListener());
         this.frame.stopAllCarsButton(new StopAllCarsListener());
         this.frame.gasButton(new GasAllCarsListener());
@@ -43,21 +41,6 @@ public class CarController {
         this.frame.raiseFlatbedButton(new RaiseFlatBedListener());
 }
     //methods:
-
-    public static void main(String[] args) {
-        // Instance of this class
-        CarView frame = new CarView("Sim 1.0");
-        CarController cc = new CarController(frame);
-
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
-
-        // Start a new view and send a reference of self
-
-        // Start the timer
-        cc.timer.start();
-    }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.

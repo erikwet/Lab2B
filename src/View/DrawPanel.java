@@ -1,4 +1,4 @@
-package GUI;
+package View;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,12 +11,12 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    ArrayList<BufferedImage> carImages = new ArrayList<>();
+    public ArrayList<BufferedImage> carImages = new ArrayList<>();
     // To keep track of a single cars position
     ArrayList<Point> carPoints = new ArrayList<>();
 
     // TODO: Make this genereal for all cars
-    void moveit(int x, int y, int i){
+    public void moveit(int x, int y, int i){
         Point p = new Point();
         p.x = x;
         p.y = y;

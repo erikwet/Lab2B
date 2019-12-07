@@ -2,19 +2,19 @@
 
 title __LAB2A's Class Diagram__\n
 
-class GUI.CarController {
+class Controller.CarController {
     ~ cars : ArrayList<MotorizedVehicle>
     {static} + main()
     + setInBounds()
 }
 
-class GUI.CarView {
+class View.GUI.CarView {
     {static} - X : int
     {static} - Y : int
     - initComponents()
 }
 
-class GUI.DrawPanel {
+class View.GUI.DrawPanel {
     ~ carImages : ArrayList<BufferedImage>
     ~ carPoints : ArrayList<Point>
     # paintComponent()
@@ -164,11 +164,11 @@ class Model.Workshop {
     + unloadTransportable()
 }
 
-GUI.CarController o-- GUI.CarView : frame
-GUI.CarView -up-|> javax.swing.JFrame
-GUI.CarView o-- GUI.CarController : carC
-GUI.CarView o-- GUI.DrawPanel : drawPanel
-GUI.DrawPanel -up-|> javax.swing.JPanel
+Controller.CarController o-- View.GUI.CarView : frame
+View.GUI.CarView -up-|> javax.swing.JFrame
+View.CarView o-- Controller.CarController : carC
+View.CarView o-- View.GUI.DrawPanel : drawPanel
+View.GUI.DrawPanel -up-|> javax.swing.JPanel
 Model.Car .up.|> Model.ITransportable
 Model.Car -up-|> Model.MotorizedVehicle
 Model.CarCarrierTruck .up.|> Model.ITransportableHolder

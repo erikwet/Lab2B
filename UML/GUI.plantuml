@@ -2,7 +2,7 @@
 
 title __GUI's Class Diagram__\n
 
-class GUI.CarController {
+class Controller.CarController {
   ~ cars : ArrayList<MotorizedVehicle>
   - delay : int
   - timer : Timer
@@ -19,11 +19,11 @@ class GUI.CarController {
   ~ stopAllCars()
 }
 
-class GUI.CarController.TimerListener {
+class Controller.CarController.TimerListener {
   + actionPerformed()
 }
 
-class GUI.CarView {
+class View.GUI.CarView {
   ~ brakeButton : JButton
   ~ controlPanel : JPanel
   ~ gasAmount : int
@@ -43,7 +43,7 @@ class GUI.CarView {
   - initComponents()
 }
 
-class GUI.DrawPanel {
+class View.GUI.DrawPanel {
   ~ carImages : ArrayList<BufferedImage>
   ~ carPoints : ArrayList<Point>
   + DrawPanel()
@@ -51,12 +51,12 @@ class GUI.DrawPanel {
   ~ moveit()
 }
 
-  GUI.CarController o-- GUI.CarView : frame
-  GUI.CarController +-down- GUI.CarController.TimerListener
-  GUI.CarController.TimerListener .up.|> java.awt.event.ActionListener
-  GUI.CarView -up-|> javax.swing.JFrame
-  GUI.CarView o-- GUI.CarController : carC
-  GUI.CarView o-- GUI.DrawPanel : drawPanel
-  GUI.DrawPanel -up-|> javax.swing.JPanel
+  Controller.CarController o-- View.GUI.CarView : frame
+  Controller.CarController +-down- Controller.CarController.TimerListener
+  Controller.CarController.TimerListener .up.|> java.awt.event.ActionListener
+  View.GUI.CarView -up-|> javax.swing.JFrame
+  View.GUI.CarView o-- Controller.CarController : carC
+  View.GUI.CarView o-- View.GUI.DrawPanel : drawPanel
+  View.GUI.DrawPanel -up-|> javax.swing.JPanel
 
 @enduml
