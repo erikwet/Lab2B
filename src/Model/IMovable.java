@@ -3,7 +3,7 @@ package Model;
 /**
  * @author Oscar Arvidson and Erik Wetter
  * Interface for all movable objects in the world.
- * Also extends interface Model.IPositionable.
+ * Also extends interface IPositionable.
  */
 
 public interface IMovable extends IPositionable{
@@ -64,4 +64,9 @@ public interface IMovable extends IPositionable{
      * Makes object turn right depending on current direction
      */
     void turnRight();
+
+    /**
+     * Turns the object around
+     */
+    void oppositeDirection();
 }

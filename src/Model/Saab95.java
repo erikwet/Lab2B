@@ -6,7 +6,7 @@ import java.awt.*;
 
 /**
  * @author Oscar Arvidson and Erik Wetter
- * Subclass of Model.Car. Represents a car of model Model.Saab95
+ * Subclass of Car. Represents a car of model Saab95
  */
 public class Saab95 extends Car {
 

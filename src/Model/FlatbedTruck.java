@@ -4,7 +4,7 @@ import java.awt.*;
 
 /**
  * @author Oscar Arvidson and Erik Wetter
- * A subclass of Model.MotorizedVehicle that consist of methods used in flatbed trucks
+ * A subclass of MotorizedVehicle that consist of methods used in flatbed trucks
  */
 public class FlatbedTruck extends MotorizedVehicle {
 
@@ -12,6 +12,7 @@ public class FlatbedTruck extends MotorizedVehicle {
     private int flatbedAngleMax;
 
     /**
+     * @param currentDirection Current direction for a flatbed truck
      * @param x x Position of flatbed truck in world
      * @param y y Position of flatbed truck in world
      * @param nrDoors Number of doors on the flatbed truck

@@ -6,7 +6,7 @@ import java.awt.*;
  * @author Oscar Arvidson and Erik Wetter
  * Abstract superclass to all MotorizedVehicles
  */
-public class MotorizedVehicle extends Movable{
+public class MotorizedVehicle extends Movable implements IMotorizedVehicle {
 
     private final int nrDoors; // Number of doors on a motorized vehicle
     private final double enginePower; // Engine power of a motorized vehicle
@@ -17,8 +17,8 @@ public class MotorizedVehicle extends Movable{
     private final double lengthMeter; //
 
     /**
-     *
-     * Constructor for Model.MotorizedVehicle class
+     * Constructor for MotorizedVehicle class
+     * @param currentDirection Current direction for a motorized vehicle
      * @param x x Position in world
      * @param y y Position in world
      * @param nrDoors Number of doors on a motorized vehicle
@@ -45,6 +45,7 @@ public class MotorizedVehicle extends Movable{
      * Increases speed of motorized vehicle depending on amount by calling on incrementSpeed
      * @param amount Amount the speed should be increased with
      */
+    @Override
     public void gas(double amount) {
         if(getCurrentSpeed() != 0){
         amount = Math.max(amount, 0);
@@ -56,6 +57,7 @@ public class MotorizedVehicle extends Movable{
      * Decreases speed of motorized vehicle depending on amount by calling on decrementSpeed
      * @param amount Amount the speed should be decreased with
      */
+    @Override
     public void brake(double amount){
         amount = Math.max(amount, 0);
         decrementSpeed(Math.min(amount, 1));
@@ -71,12 +73,14 @@ public class MotorizedVehicle extends Movable{
      * Increments speed of motorized vehicle depending on amount
      * @param amount Amount the speed should increment with
      */
+    @Override
     public void incrementSpeed(double amount) { setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount); }
 
     /**
      * Decrements speed of motorized vehicle depending on amount
      * @param amount Amount the speed should decrement with
      */
+    @Override
     public void decrementSpeed(double amount){ setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount); }
 
     /**
@@ -116,6 +120,7 @@ public class MotorizedVehicle extends Movable{
     /**
      * Starts engine by setting currentSpeed to 0.1
      */
+    @Override
     public void startEngine(){
         super.setCurrentSpeed(0.1);
     }
@@ -123,6 +128,7 @@ public class MotorizedVehicle extends Movable{
     /**
      * Stops engine by setting currentSpeed to 0
      */
+    @Override
     public void stopEngine(){
         super.setCurrentSpeed(0);
     }

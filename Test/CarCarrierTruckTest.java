@@ -41,25 +41,11 @@ public class CarCarrierTruckTest {
     }
 
     @Test
-    public void transportableFitsTest() {
-
-        assertEquals(true, MANTGXD38.transportableFits(volvo));
-    }
-
-    @Test
-    public void closeEnoughTest(){
-        volvo.setX(100);
-        volvo.setY(50);
-        MANTGXD38.setX(100);
-        MANTGXD38.setY(51);
-
-        assertEquals(true, MANTGXD38.closeEnough(volvo));
-    }
-
-    @Test
     public void moveTest(){
-        volvo.setX(200);
-        volvo.setY(100);
+        volvo.setX(22);
+        volvo.setY(21);
+        MANTGXD38.setX(20);
+        MANTGXD38.setY(20);
         MANTGXD38.setCurrentDirection(IMovable.Direction.NORTH);
         MANTGXD38.getTransporterStorageList().clear();
         MANTGXD38.lowerRamp();
@@ -67,17 +53,10 @@ public class CarCarrierTruckTest {
         MANTGXD38.raiseRamp();
         MANTGXD38.setCurrentSpeed(5);
         MANTGXD38.move();
-        assertEquals(95, MANTGXD38.getY(), 0.0001);
+        assertEquals(15, MANTGXD38.getY(), 0.0001);
         assertEquals(MANTGXD38.getY(), volvo.getY(), 0.0001);
     }
 
-    @Test
-    public void transporterIsNotFullTest(){
-
-        MANTGXD38.getTransporterStorageList().clear();
-
-        assertEquals(true, MANTGXD38.transporterIsNotFull());
-    }
 
     @Test
     public void unloadTransportableTest(){

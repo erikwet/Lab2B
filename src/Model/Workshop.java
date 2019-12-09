@@ -4,6 +4,7 @@ import java.util.Deque;
 
 /**
  * @author Oscar Arvidson and Erik Wetter
+ * A workshop objects that can hold Cars och subclasses of car
  */
 public class Workshop <T extends Car> implements ITransportableHolder<T>{
 
@@ -18,7 +19,7 @@ public class Workshop <T extends Car> implements ITransportableHolder<T>{
      * @param y Y Position of the workshop in world
      */
     public Workshop(int maxStoredObjects, double maxTransportableWidth, double maxTransportableHeight, double maxTransportableLength, double x, double y) {
-        this.transportableHolderParent = new TransportableHolder(maxStoredObjects, maxTransportableWidth, maxTransportableHeight, maxTransportableLength, x, y);
+        transportableHolderParent = new TransportableHolder(maxStoredObjects, maxTransportableWidth, maxTransportableHeight, maxTransportableLength, x, y);
     }
 
     /**
@@ -58,35 +59,6 @@ public class Workshop <T extends Car> implements ITransportableHolder<T>{
     @Override
     public void unloadTransportable() {
         transportableHolderParent.unloadTransportable();
-    }
-
-    /**
-     * Checks if a transportable fits in the workshop
-     * @param transportable The transportable object being tested.
-     * @return True or False if it fits.
-     */
-    @Override
-    public boolean transportableFits(T transportable) {
-        return transportableHolderParent.transportableFits(transportable);
-    }
-
-    /**
-     * Check if transporters storage is full
-     * @return True or False if it is transporters storage is full
-     */
-    @Override
-    public boolean transporterIsNotFull() {
-        return transportableHolderParent.transporterIsNotFull();
-    }
-
-    /**
-     * Check if object is close enough to workshop to be loaded
-     * @param transportable The transportable being checked.
-     * @return True or False if transportable is close enough
-     */
-    @Override
-    public boolean closeEnough(T transportable) {
-        return transportableHolderParent.closeEnough(transportable);
     }
 
     /**

@@ -6,14 +6,16 @@ import java.util.Deque;
 /**
  * @author Oscar Arvidson and Erik Wetter
  * A subclass of Model.MotorizedVehicle that consist of methods used in car carrier truck.
- * Also implements the interface Model.ITransportableHolder and uses parametric type T which extends interface Model.ITransportable.
+ * Also implements the interface ITransportableHolder and uses parametric type T which extends interface Model.ITransportable.
  */
-public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle implements ITransportableHolder<T>{
+public class CarCarrierTruck<T extends ITransportable> implements ITransportableHolder<T>, IMotorizedVehicle{
 
     private TransportableHolder transportableHolderParent;
+    private MotorizedVehicle motorizedVehicleParent;
     private boolean isRampUp;
 
     /**
+     * @param currentDirection Current direction for a truck
      * @param x X Position of truck in world
      * @param y Y Position of truck in world
      * @param nrDoors Number of doors on the truck
@@ -29,7 +31,7 @@ public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle 
      * @param maxTransportableLength Max allowed length of transported object
      */
     public CarCarrierTruck(Direction currentDirection, double x, double y, int nrDoors, double enginePower, Color color, String modelName, double widthMeter, double heightMeter, double lengthMeter, int maxStoredObjects, double maxTransportableWidth, double maxTransportableHeight, double maxTransportableLength) {
-        super(currentDirection, x, y, nrDoors, enginePower, color, modelName, widthMeter, heightMeter, lengthMeter);
+        motorizedVehicleParent = new MotorizedVehicle(currentDirection, x, y, nrDoors, enginePower, color, modelName, widthMeter, heightMeter, lengthMeter);
         transportableHolderParent = new TransportableHolder(maxStoredObjects, maxTransportableWidth, maxTransportableHeight, maxTransportableLength, x, y);
     }
 
@@ -51,6 +53,16 @@ public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle 
         }
     }
 
+    @Override
+    public void setCurrentDirection(Direction currentDirection) {
+        motorizedVehicleParent.setCurrentDirection(currentDirection);
+    }
+
+    @Override
+    public Direction getCurrentDirection() {
+        return motorizedVehicleParent.getCurrentDirection();
+    }
+
     /**
      * Change current speed of truck if ramp is up
      * @param speed Current speed of truck
@@ -58,10 +70,15 @@ public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle 
     @Override
     public void setCurrentSpeed(double speed){
         if(!isRampUp) {
-            super.setCurrentSpeed(0);
+            motorizedVehicleParent.setCurrentSpeed(0);
         }else {
-            super.setCurrentSpeed(speed);
+            motorizedVehicleParent.setCurrentSpeed(speed);
         }
+    }
+
+    @Override
+    public double getCurrentSpeed() {
+        return motorizedVehicleParent.getCurrentSpeed();
     }
 
     /**
@@ -69,8 +86,36 @@ public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle 
      */
     @Override
     public void move(){
-        super.move();
+        switch (getCurrentDirection()){
+            case NORTH:
+                transportableHolderParent.y -= getCurrentSpeed();
+                break;
+            case EAST:
+                transportableHolderParent.x += getCurrentSpeed();
+                break;
+            case SOUTH:
+                transportableHolderParent.y += getCurrentSpeed();
+                break;
+            case WEST:
+                transportableHolderParent.x -= getCurrentSpeed();
+                break;
+        }
         updateStoredObjectsPosition();
+    }
+
+    @Override
+    public void turnLeft() {
+        motorizedVehicleParent.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        motorizedVehicleParent.turnRight();
+    }
+
+    @Override
+    public void oppositeDirection() {
+        motorizedVehicleParent.oppositeDirection();
     }
 
     /**
@@ -98,35 +143,6 @@ public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle 
     }
 
     /**
-     * Checks if a transportable fits on the truck
-     * @param transportable The transportable object being tested.
-     * @return True or False if it fits.
-     */
-    @Override
-    public boolean transportableFits(T transportable) {
-        return transportableHolderParent.transportableFits(transportable);
-    }
-
-    /**
-     * Check if transporters storage is full
-     * @return True or False if it is transporters storage is full
-     */
-    @Override
-    public boolean transporterIsNotFull() {
-        return transportableHolderParent.transporterIsNotFull();
-    }
-
-    /**
-     * Check if object is close enough to truck to be loaded
-     * @param transportable The transportable being checked.
-     * @return True or False if transportable is close enough
-     */
-    @Override
-    public boolean closeEnough(T transportable) {
-        return transportableHolderParent.closeEnough(transportable);
-    }
-
-    /**
      * Updates position of objects in transporters storage with the trucks x and y
      */
     public void updateStoredObjectsPosition(){
@@ -149,5 +165,45 @@ public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle 
     @Override
     public void setY(double y){
         transportableHolderParent.y = y;
+    }
+
+    @Override
+    public void gas(double amount) {
+        motorizedVehicleParent.gas(amount);
+    }
+
+    @Override
+    public void brake(double amount) {
+        motorizedVehicleParent.gas(amount);
+    }
+
+    @Override
+    public void incrementSpeed(double amount) {
+        motorizedVehicleParent.incrementSpeed(amount);
+    }
+
+    @Override
+    public void decrementSpeed(double amount) {
+        motorizedVehicleParent.incrementSpeed(amount);
+    }
+
+    @Override
+    public void startEngine() {
+        motorizedVehicleParent.startEngine();
+    }
+
+    @Override
+    public void stopEngine() {
+        motorizedVehicleParent.stopEngine();
+    }
+
+    @Override
+    public double getX() {
+        return transportableHolderParent.x;
+    }
+
+    @Override
+    public double getY() {
+        return transportableHolderParent.y;
     }
 }

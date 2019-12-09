@@ -5,11 +5,12 @@ import java.util.Deque;
 
 /**
  * @author Oscar Arvidson and Erik Wetter
+ * A class that delegate functionality to TransportableHolder objects
  */
 
 public class TransportableHolder<T extends ITransportable> implements ITransportableHolder<T> {
 
-    protected Deque<T> transporterStorageList = new ArrayDeque<>();
+    protected Deque<T> transporterStorageList = new ArrayDeque<>(); //List of stored ITransportable or ITransportable subclasses
     private int maxStoredObjects ;
     private double maxTransportableWidth;
     private double maxTransportableHeight;
@@ -78,7 +79,6 @@ public class TransportableHolder<T extends ITransportable> implements ITransport
      * @param transportable The transportable object being tested.
      * @return True or False if the transportable fits
      */
-    @Override
     public boolean transportableFits(T transportable){
         return transportable.getWidthMeter() <= maxTransportableWidth &&
                 transportable.getHeightMeter() <= maxTransportableHeight &&
@@ -89,7 +89,6 @@ public class TransportableHolder<T extends ITransportable> implements ITransport
      * Check if transporters storage is full
      * @return True or False if it is transporters storage is full
      */
-    @Override
     public boolean transporterIsNotFull(){
         return transporterStorageList.size() < maxStoredObjects;
     }
@@ -99,7 +98,6 @@ public class TransportableHolder<T extends ITransportable> implements ITransport
      * @param transportable The transportable being checked.
      * @return True or False if transportable is close enough
      */
-    @Override
     public boolean closeEnough(T transportable){
         return (transportable.getX() >= x-5 &&
                 transportable.getX() <= x+5 &&

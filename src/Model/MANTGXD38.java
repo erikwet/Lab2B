@@ -4,7 +4,7 @@ import java.awt.*;
 
 /**
  * @author Oscar Arvidson and Erik Wetter
- * Subclass of Model.CarCarrierTruck
+ * Subclass of CarCarrierTruck
  */
 
 public class MANTGXD38 extends CarCarrierTruck {

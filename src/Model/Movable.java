@@ -12,7 +12,7 @@ public abstract class Movable implements IMovable {
     private double currentSpeed; // The current speed of the car
 
     /**
-     * Constructor for class Model.Movable.
+     * Constructor for class Movable.
      * @param currentDirection Direction a movable object is currently facing.
      * @param x X position of an object in world
      * @param y Y position of an object in world

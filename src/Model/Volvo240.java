@@ -14,7 +14,7 @@ public class Volvo240 extends Car {
     }
 
     /**
-     * Calculates the speed factor (overrides method from Model.Car)
+     * Calculates the speed factor (overrides method Car)
      * @return The speed factor (factor the speed is changed by)
      */
     @Override

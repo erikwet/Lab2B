@@ -4,7 +4,7 @@ import java.awt.*;
 
 /**
  * @author Oscar Arvidson and Erik Wetter
- * Superclass to all Model.Car subobjects
+ * Superclass to all Car subobjects
  */
 public class Car extends MotorizedVehicle implements ITransportable {
 

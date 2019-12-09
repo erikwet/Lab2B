@@ -3,7 +3,7 @@ package Model;
 /**
  * @author Oscar Arvidson and Erik Wetter
  * Interface for all transportable objects in the world.
- * Also extends interface Model.IMovable.
+ * Also extends interface IMovable.
  */
 public interface ITransportable extends IMovable {
     /**
