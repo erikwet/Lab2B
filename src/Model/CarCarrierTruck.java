@@ -10,7 +10,7 @@ import java.util.Deque;
  */
 public class CarCarrierTruck<T extends ITransportable> implements ITransportableHolder<T>, IMotorizedVehicle{
 
-    private TransportableHolder transportableHolderParent;
+     final private TransportableHolder transportableHolderParent;
     private MotorizedVehicle motorizedVehicleParent;
     private boolean isRampUp;
 
@@ -175,16 +175,6 @@ public class CarCarrierTruck<T extends ITransportable> implements ITransportable
     @Override
     public void brake(double amount) {
         motorizedVehicleParent.gas(amount);
-    }
-
-    @Override
-    public void incrementSpeed(double amount) {
-        motorizedVehicleParent.incrementSpeed(amount);
-    }
-
-    @Override
-    public void decrementSpeed(double amount) {
-        motorizedVehicleParent.incrementSpeed(amount);
     }
 
     @Override

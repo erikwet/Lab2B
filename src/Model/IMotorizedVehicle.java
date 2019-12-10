@@ -20,18 +20,6 @@ public interface IMotorizedVehicle extends IMovable {
     void brake(double amount);
 
     /**
-     * Increment the speed of a motorized vehicle
-     * @param amount The amount the speed should increment with
-     */
-    void incrementSpeed(double amount);
-
-    /**
-     * Decrement the speed of a motorized vehicle
-     * @param amount The amount the speed should decrement with
-     */
-    void decrementSpeed(double amount);
-
-    /**
      * Starts engine of a motorized vehicle
      */
     void startEngine();

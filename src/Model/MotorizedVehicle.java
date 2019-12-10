@@ -14,7 +14,7 @@ public class MotorizedVehicle extends Movable implements IMotorizedVehicle {
     private final String modelName; // The motorized vehicle model name
     private final double widthMeter; // Width in meter of a motorized vehicle
     private final double heightMeter; // Height in meter of a motorized vehicle
-    private final double lengthMeter; //
+    private final double lengthMeter; //Length in meter of a motorized vehicle
 
     /**
      * Constructor for MotorizedVehicle class
@@ -73,14 +73,12 @@ public class MotorizedVehicle extends Movable implements IMotorizedVehicle {
      * Increments speed of motorized vehicle depending on amount
      * @param amount Amount the speed should increment with
      */
-    @Override
     public void incrementSpeed(double amount) { setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount); }
 
     /**
      * Decrements speed of motorized vehicle depending on amount
      * @param amount Amount the speed should decrement with
      */
-    @Override
     public void decrementSpeed(double amount){ setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount); }
 
     /**
