@@ -22,6 +22,7 @@ public class CarView extends JFrame {
 
     JPanel controlPanel = new JPanel();
     JPanel gasPanel = new JPanel();
+    JPanel specialControlPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     public int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
@@ -32,6 +33,9 @@ public class CarView extends JFrame {
     JButton turboOffButton = new JButton("Saab: Turbo off");
     JButton liftBedButton = new JButton("Scania: Lift Flatbed");
     JButton lowerBedButton = new JButton("Scania: Lower Flatbed");
+
+    JButton addCarButton = new JButton("Add car");
+    JButton removeCarButton = new JButton("Remove car");
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
@@ -82,17 +86,22 @@ public class CarView extends JFrame {
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
+        specialControlPanel.setLayout(new GridLayout(2, 2));
 
+        specialControlPanel.add(startButton, 0);
+        specialControlPanel.add(stopButton, 1);
+        specialControlPanel.add(addCarButton, 2);
+        specialControlPanel.add(removeCarButton, 3);
+        specialControlPanel.setPreferredSize(new Dimension((X / 4) + 98, 200));
+        this.add(specialControlPanel);
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
-        this.add(startButton);
-
-
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
-        this.add(stopButton);
+        addCarButton.setBackground(Color.green);
+        addCarButton.setForeground(Color.black);
+        removeCarButton.setBackground(Color.black);
+        removeCarButton.setForeground(Color.white);
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -137,5 +146,13 @@ public class CarView extends JFrame {
 
     public void raiseFlatbedButton(ActionListener listenForButton) {
         liftBedButton.addActionListener(listenForButton);
+    }
+
+    public void addCarButton(ActionListener listenForButton){
+        addCarButton.addActionListener(listenForButton);
+    }
+
+    public void removeCarButton(ActionListener listenForButton){
+        addCarButton.addActionListener(listenForButton);
     }
 }

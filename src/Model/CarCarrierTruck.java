@@ -8,7 +8,7 @@ import java.util.Deque;
  * A subclass of Model.MotorizedVehicle that consist of methods used in car carrier truck.
  * Also implements the interface ITransportableHolder and uses parametric type T which extends interface Model.ITransportable.
  */
-public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle implements ITransportableHolder<T> {
+public abstract class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle implements ITransportableHolder<T> {
 
     final private TransportableHolder transportableHolderParent;
     private boolean isRampUp;

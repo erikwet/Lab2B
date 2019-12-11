@@ -6,7 +6,7 @@ import java.awt.*;
  * @author Oscar Arvidson and Erik Wetter
  * A subclass of MotorizedVehicle that consist of methods used in flatbed trucks
  */
-public class FlatbedTruck extends MotorizedVehicle {
+public abstract class FlatbedTruck extends MotorizedVehicle {
 
     private int flatbedAngle;
     private int flatbedAngleMax;

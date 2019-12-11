@@ -39,6 +39,8 @@ public class CarController {
         this.frame.turboOffButton(new TurboOffListener());
         this.frame.lowerFlatbedButton(new LowerFlatBedListener());
         this.frame.raiseFlatbedButton(new RaiseFlatBedListener());
+        this.frame.addCarButton(new AddCarListener());
+        this.frame.removeCarButton(new RemoveCarListener());
 }
     //methods:
 
@@ -51,9 +53,9 @@ public class CarController {
                 cars.get(i).move();
                 int x = (int) Math.round(cars.get(i).getX());
                 int y = (int) Math.round(cars.get(i).getY());
-                if(outOfBounds(x,y, frame.drawPanel.carImages.get(0))) {
+                if(outOfBounds(x,y, frame.drawPanel.carImages.get(i))) {
                     cars.get(i).stopEngine();
-                    setInBounds(cars.get(i), frame.drawPanel.carImages.get(0));
+                    setInBounds(cars.get(i), frame.drawPanel.carImages.get(i));
                     cars.get(i).oppositeDirection();
                     cars.get(i).startEngine();
                 }
@@ -118,6 +120,19 @@ public class CarController {
         @Override
         public void actionPerformed(ActionEvent e) {
             raiseFlatbed();
+        }
+    }
+
+    private class AddCarListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Send method to factory
+        }
+    }
+    private class RemoveCarListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Send method to factory
         }
     }
 

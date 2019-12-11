@@ -9,7 +9,7 @@ import java.awt.*;
 public class Scania extends FlatbedTruck {
 
     public Scania() {
-        super(Direction.EAST, 0,250, 2, 500, Color.cyan, "ScaniaG530", 2.5, 5, 10, 70);
+        super(Direction.EAST, 0,250, 2, 500, Color.cyan, "Scania", 2.5, 5, 10, 70);
     }
 
     /**
