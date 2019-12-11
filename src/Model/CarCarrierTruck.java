@@ -8,10 +8,9 @@ import java.util.Deque;
  * A subclass of Model.MotorizedVehicle that consist of methods used in car carrier truck.
  * Also implements the interface ITransportableHolder and uses parametric type T which extends interface Model.ITransportable.
  */
-public class CarCarrierTruck<T extends ITransportable> implements ITransportableHolder<T>, IMotorizedVehicle{
+public class CarCarrierTruck<T extends ITransportable> extends MotorizedVehicle implements ITransportableHolder<T> {
 
-     final private TransportableHolder transportableHolderParent;
-    private MotorizedVehicle motorizedVehicleParent;
+    final private TransportableHolder transportableHolderParent;
     private boolean isRampUp;
 
     /**
@@ -31,7 +30,7 @@ public class CarCarrierTruck<T extends ITransportable> implements ITransportable
      * @param maxTransportableLength Max allowed length of transported object
      */
     public CarCarrierTruck(Direction currentDirection, double x, double y, int nrDoors, double enginePower, Color color, String modelName, double widthMeter, double heightMeter, double lengthMeter, int maxStoredObjects, double maxTransportableWidth, double maxTransportableHeight, double maxTransportableLength) {
-        motorizedVehicleParent = new MotorizedVehicle(currentDirection, x, y, nrDoors, enginePower, color, modelName, widthMeter, heightMeter, lengthMeter);
+       super(currentDirection, x, y, nrDoors, enginePower, color, modelName, widthMeter, heightMeter, lengthMeter);
         transportableHolderParent = new TransportableHolder(maxStoredObjects, maxTransportableWidth, maxTransportableHeight, maxTransportableLength, x, y);
     }
 
@@ -53,16 +52,6 @@ public class CarCarrierTruck<T extends ITransportable> implements ITransportable
         }
     }
 
-    @Override
-    public void setCurrentDirection(Direction currentDirection) {
-        motorizedVehicleParent.setCurrentDirection(currentDirection);
-    }
-
-    @Override
-    public Direction getCurrentDirection() {
-        return motorizedVehicleParent.getCurrentDirection();
-    }
-
     /**
      * Change current speed of truck if ramp is up
      * @param speed Current speed of truck
@@ -70,15 +59,10 @@ public class CarCarrierTruck<T extends ITransportable> implements ITransportable
     @Override
     public void setCurrentSpeed(double speed){
         if(!isRampUp) {
-            motorizedVehicleParent.setCurrentSpeed(0);
+            super.setCurrentSpeed(0);
         }else {
-            motorizedVehicleParent.setCurrentSpeed(speed);
+            super.setCurrentSpeed(speed);
         }
-    }
-
-    @Override
-    public double getCurrentSpeed() {
-        return motorizedVehicleParent.getCurrentSpeed();
     }
 
     /**
@@ -103,20 +87,6 @@ public class CarCarrierTruck<T extends ITransportable> implements ITransportable
         updateStoredObjectsPosition();
     }
 
-    @Override
-    public void turnLeft() {
-        motorizedVehicleParent.turnLeft();
-    }
-
-    @Override
-    public void turnRight() {
-        motorizedVehicleParent.turnRight();
-    }
-
-    @Override
-    public void oppositeDirection() {
-        motorizedVehicleParent.oppositeDirection();
-    }
 
     /**
      * @return Transporters storage list
@@ -165,26 +135,6 @@ public class CarCarrierTruck<T extends ITransportable> implements ITransportable
     @Override
     public void setY(double y){
         transportableHolderParent.y = y;
-    }
-
-    @Override
-    public void gas(double amount) {
-        motorizedVehicleParent.gas(amount);
-    }
-
-    @Override
-    public void brake(double amount) {
-        motorizedVehicleParent.gas(amount);
-    }
-
-    @Override
-    public void startEngine() {
-        motorizedVehicleParent.startEngine();
-    }
-
-    @Override
-    public void stopEngine() {
-        motorizedVehicleParent.stopEngine();
     }
 
     @Override

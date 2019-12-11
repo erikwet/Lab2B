@@ -1,5 +1,5 @@
 package Controller;
-import Model.IMotorizedVehicle;
+import Model.MotorizedVehicle;
 import Model.Saab95;
 import Model.Scania;
 import View.CarView;
@@ -27,7 +27,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     private CarView frame;
     // A list of cars, modify if needed
-    public ArrayList<IMotorizedVehicle> cars = new ArrayList<>();
+    public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
 
     public CarController(CarView frame){
         this.frame = frame;
@@ -124,7 +124,7 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (IMotorizedVehicle car : cars
+        for (MotorizedVehicle car : cars
                 ) {
             car.gas(gas);
         }
@@ -136,7 +136,7 @@ public class CarController {
      */
     void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (IMotorizedVehicle car : cars
+        for (MotorizedVehicle car : cars
         ) {
             car.brake(brake);
         }
@@ -146,10 +146,9 @@ public class CarController {
      * Try to call the setTurboOn method for each car once and runs if car is a Saab95
      */
     void setTurboOn(){
-        for(IMotorizedVehicle car: cars){
+        for(MotorizedVehicle car: cars){
             if(car.getClass() == Saab95.class){
-                Saab95 s = (Saab95) car;
-                s.setTurboOn();
+                ((Saab95) car).setTurboOn();
             }
         }
     }
@@ -158,10 +157,9 @@ public class CarController {
      * Try to call the setTurboOff method for each car once and runs if car is a Saab95
      */
     void setTurboOff(){
-        for(IMotorizedVehicle car: cars){
+        for(MotorizedVehicle car: cars){
             if(car.getClass() == Saab95.class){
-                Saab95 s = (Saab95) car;
-                s.setTurboOff();
+                ((Saab95) car).setTurboOff();
             }
         }
     }
@@ -170,10 +168,9 @@ public class CarController {
      * Try to call the raiseFlatbed method for each car once and runs if car is a Scania
      */
     void raiseFlatbed(){
-        for(IMotorizedVehicle car: cars){
+        for(MotorizedVehicle car: cars){
             if(car.getClass() == Scania.class){
-                Scania s = (Scania) car;
-                s.raiseFlatbed();
+                ((Scania) car).raiseFlatbed();
             }
         }
     }
@@ -182,10 +179,9 @@ public class CarController {
      * Try to call the lowerFlatbed method for each car once and runs if car is a Scania
      */
     void lowerFlatbed() {
-        for(IMotorizedVehicle car: cars){
+        for(MotorizedVehicle car: cars){
             if(car.getClass() == Scania.class){
-                Scania s = (Scania) car;
-                s.lowerFlatbed();
+                ((Scania) car).lowerFlatbed();
             }
         }
     }
@@ -194,7 +190,7 @@ public class CarController {
      * Calls the stopEngine method for each car once
      */
     void stopAllCars() {
-        for(IMotorizedVehicle car: cars){
+        for(MotorizedVehicle car: cars){
             car.stopEngine();
         }
     }
@@ -203,7 +199,7 @@ public class CarController {
      * Calls the startEngine method for each car once
      */
     void startAllCars() {
-        for(IMotorizedVehicle car: cars){
+        for(MotorizedVehicle car: cars){
             car.startEngine();
         }
     }
@@ -224,7 +220,7 @@ public class CarController {
      * @param car The car that will be move in bounds
      * @param carImage The image of the car
      */
-   public void setInBounds(IMotorizedVehicle car, BufferedImage carImage){
+   public void setInBounds(MotorizedVehicle car, BufferedImage carImage){
         double x = (Math.min((frame.drawPanel.getWidth()-carImage.getWidth()), car.getX()));
         car.setX(Math.max(0, x));
         double y = (Math.min((frame.drawPanel.getHeight()-carImage.getHeight()), car.getY()));
