@@ -1,12 +1,13 @@
 package Controller;
-import Model.MotorizedVehicle;
-import Model.Saab95;
-import Model.Scania;
+import Model.*;
 import View.CarView;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 
 public class CarController {
     // member fields:
-
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
@@ -25,9 +25,10 @@ public class CarController {
     public Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
-    private CarView frame;
+    public CarView frame;
     // A list of cars, modify if needed
     public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
+    private MotorizedVehicleFactory motorizedVehicleFactory;
 
     public CarController(CarView frame){
         this.frame = frame;
@@ -126,7 +127,8 @@ public class CarController {
     private class AddCarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //Send method to factory
+            /*cars.add(motorizedVehicleFactory.createMotorizedVehicle());
+            addCarImage(new Volvo240());*/
         }
     }
     private class RemoveCarListener implements ActionListener {
@@ -137,7 +139,7 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    private void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (MotorizedVehicle car : cars
                 ) {
@@ -149,7 +151,7 @@ public class CarController {
      * Calls the brake method for each car once
      * @param amount The amount of "power" the cars will brake with
      */
-    void brake(int amount) {
+    private void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (MotorizedVehicle car : cars
         ) {
@@ -160,7 +162,7 @@ public class CarController {
     /**
      * Try to call the setTurboOn method for each car once and runs if car is a Saab95
      */
-    void setTurboOn(){
+    private void setTurboOn(){
         for(MotorizedVehicle car: cars){
             if(car.getClass() == Saab95.class){
                 ((Saab95) car).setTurboOn();
@@ -171,7 +173,7 @@ public class CarController {
     /**
      * Try to call the setTurboOff method for each car once and runs if car is a Saab95
      */
-    void setTurboOff(){
+    private void setTurboOff(){
         for(MotorizedVehicle car: cars){
             if(car.getClass() == Saab95.class){
                 ((Saab95) car).setTurboOff();
@@ -182,7 +184,7 @@ public class CarController {
     /**
      * Try to call the raiseFlatbed method for each car once and runs if car is a Scania
      */
-    void raiseFlatbed(){
+    private void raiseFlatbed(){
         for(MotorizedVehicle car: cars){
             if(car.getClass() == Scania.class){
                 ((Scania) car).raiseFlatbed();
@@ -193,7 +195,7 @@ public class CarController {
     /**
      * Try to call the lowerFlatbed method for each car once and runs if car is a Scania
      */
-    void lowerFlatbed() {
+    private void lowerFlatbed() {
         for(MotorizedVehicle car: cars){
             if(car.getClass() == Scania.class){
                 ((Scania) car).lowerFlatbed();
@@ -204,7 +206,7 @@ public class CarController {
     /**
      * Calls the stopEngine method for each car once
      */
-    void stopAllCars() {
+    private void stopAllCars() {
         for(MotorizedVehicle car: cars){
             car.stopEngine();
         }
@@ -213,7 +215,7 @@ public class CarController {
     /**
      * Calls the startEngine method for each car once
      */
-    void startAllCars() {
+    private void startAllCars() {
         for(MotorizedVehicle car: cars){
             car.startEngine();
         }
@@ -226,7 +228,7 @@ public class CarController {
      * @param carImage image of a car
      * @return True or False if the car is out of bounds
      */
-    boolean outOfBounds(int x, int y, BufferedImage carImage){
+    private boolean outOfBounds(int x, int y, BufferedImage carImage){
         return x < 0 || x > (frame.drawPanel.getWidth()-carImage.getWidth()) || y < 0 || y > (frame.drawPanel.getHeight()-carImage.getHeight());
     }
 
@@ -235,10 +237,20 @@ public class CarController {
      * @param car The car that will be move in bounds
      * @param carImage The image of the car
      */
-   public void setInBounds(MotorizedVehicle car, BufferedImage carImage){
+    private void setInBounds(MotorizedVehicle car, BufferedImage carImage){
         double x = (Math.min((frame.drawPanel.getWidth()-carImage.getWidth()), car.getX()));
         car.setX(Math.max(0, x));
         double y = (Math.min((frame.drawPanel.getHeight()-carImage.getHeight()), car.getY()));
         car.setY(Math.max(0, y));
+    }
+
+    private void addCarImage(MotorizedVehicle car){
+       String image = "pics/" + car.getModelName() + ".jpg";
+        System.out.println(image);
+        try {
+            frame.drawPanel.carImages.add(ImageIO.read(CarView.class.getResourceAsStream(image)));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

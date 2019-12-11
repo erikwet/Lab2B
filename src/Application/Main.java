@@ -17,7 +17,7 @@ public class Main {
         CarView frame = new CarView("Sim 1.0");
         CarController cc = new CarController(frame);
 
-        cc.cars.add(new Volvo240());
+        /*cc.cars.add(new Volvo240());
         cc.cars.add(new Saab95());
         cc.cars.add(new Scania());
 
@@ -29,9 +29,7 @@ public class Main {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-
-            // Start a new view and send a reference of self
+        }*/
 
             // Start the timer
             cc.timer.start();

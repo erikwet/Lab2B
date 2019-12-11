@@ -10,7 +10,7 @@ import javax.swing.*;
 public class DrawPanel extends JPanel{
 
     public ArrayList<BufferedImage> carImages = new ArrayList<>();
-    ArrayList<Point> carPoints = new ArrayList<>();
+    private ArrayList<Point> carPoints = new ArrayList<>();
 
     // TODO: Make this genereal for all cars
     public void moveit(int x, int y, int i){
