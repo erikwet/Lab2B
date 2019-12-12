@@ -1,10 +1,13 @@
 package Controller;
 import Model.*;
 import View.CarView;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -25,10 +28,11 @@ public class CarController {
     public CarView frame;
     // A list of cars, modify if needed
     public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
-    private MotorizedVehicleFactory motorizedVehicleFactory;
+    private IMotorizedVehicleFactory motorizedVehicleFactory;
 
-    public CarController(CarView frame){
+    public CarController(CarView frame, IMotorizedVehicleFactory motorizedVehicleFactory){
         this.frame = frame;
+        this.motorizedVehicleFactory = motorizedVehicleFactory;
         createActionListeners();
 }
     //methods:
@@ -118,7 +122,9 @@ public class CarController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Calls method not done yet
-                cars.add(motorizedVehicleFactory.createMotorizedVehicle());
+                MotorizedVehicle newCar = motorizedVehicleFactory.createMotorizedVehicle();
+                cars.add(newCar);
+                addCarImage(newCar);
             }
         });
 
@@ -236,7 +242,7 @@ public class CarController {
         car.setY(Math.max(0, y));
     }
 
-    /*private void addCarImage(MotorizedVehicle car){
+    private void addCarImage(MotorizedVehicle car){
        String image = "pics/" + car.getModelName() + ".jpg";
         System.out.println(image);
         try {
@@ -244,5 +250,5 @@ public class CarController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }*/
+    }
 }

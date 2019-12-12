@@ -3,6 +3,7 @@ package Application;
 import Controller.CarController;
 import Model.*;
 import View.CarView;
+import View.SpeedView;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -11,11 +12,11 @@ public class Main {
 
     public static void main(String[] args) {
         // Instance of this class
-        CarView frame = new CarView("Sim 1.0");
-        CarController cc = new CarController(frame);
+        CarView carframe = new CarView("Sim 1.0");
+        SpeedView speedframe = new SpeedView();
+        CarController cc = new CarController(carframe, speedframe, new MotorizedVehicleFactory());
         MotorizedVehicleFactory test = new MotorizedVehicleFactory();
 
-        cc.cars.add(test.createMotorizedVehicle());
         cc.cars.add(new Saab95());
         cc.cars.add(new Scania());
 
@@ -23,7 +24,7 @@ public class Main {
             String s = "pics/" + car.getModelName() + ".jpg";
             System.out.println(s);
             try {
-                frame.drawPanel.carImages.add(ImageIO.read(CarView.class.getResourceAsStream(s)));
+                carframe.drawPanel.carImages.add(ImageIO.read(CarView.class.getResourceAsStream(s)));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

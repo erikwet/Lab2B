@@ -12,12 +12,15 @@ import java.awt.*;
  **/
 
 public class CarView extends JFrame {
+
     private static final int X = 800;
     private static final int Y = 800;
 
+    public DrawPanel drawPanel = new DrawPanel(X, Y - 240);
+
     // The controller member
 
-    public DrawPanel drawPanel = new DrawPanel(X, Y - 240);
+
 
     private JPanel controlPanel = new JPanel();
     private JPanel gasPanel = new JPanel();
