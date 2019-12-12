@@ -20,8 +20,6 @@ public class CarView extends JFrame {
 
     // The controller member
 
-
-
     private JPanel controlPanel = new JPanel();
     private JPanel gasPanel = new JPanel();
     private JPanel specialControlPanel = new JPanel();

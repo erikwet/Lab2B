@@ -117,7 +117,9 @@ public abstract class MotorizedVehicle extends Movable {
      * Starts engine by setting currentSpeed to 0.1
      */
     public void startEngine(){
-        super.setCurrentSpeed(0.1);
+        if(getCurrentSpeed() == 0){
+            super.setCurrentSpeed(0.1);
+        }
     }
 
     /**

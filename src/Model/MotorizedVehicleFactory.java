@@ -17,5 +17,4 @@ public class MotorizedVehicleFactory implements IMotorizedVehicleFactory {
         }
         else return new Scania();
     }
-
 }

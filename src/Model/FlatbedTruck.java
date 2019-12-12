@@ -78,6 +78,8 @@ public abstract class FlatbedTruck extends MotorizedVehicle {
 
     @Override
     public void startEngine(){
-        setCurrentSpeed(0.1);
+        if(getCurrentSpeed() == 0){
+            setCurrentSpeed(0.1);
+        }
     }
 }

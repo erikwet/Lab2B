@@ -1,7 +1,7 @@
 package Controller;
 import Model.*;
 import View.CarView;
-
+import View.InfoPanel;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,12 +26,14 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
     public CarView frame;
+    public InfoPanel infoFrame;
     // A list of cars, modify if needed
     public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
     private IMotorizedVehicleFactory motorizedVehicleFactory;
 
-    public CarController(CarView frame, IMotorizedVehicleFactory motorizedVehicleFactory){
+    public CarController(CarView frame, InfoPanel infoFrame, IMotorizedVehicleFactory motorizedVehicleFactory){
         this.frame = frame;
+        this.infoFrame = infoFrame;
         this.motorizedVehicleFactory = motorizedVehicleFactory;
         createActionListeners();
 }
@@ -121,17 +123,22 @@ public class CarController {
         frame.getAddCarButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Calls method not done yet
-                MotorizedVehicle newCar = motorizedVehicleFactory.createMotorizedVehicle();
-                cars.add(newCar);
-                addCarImage(newCar);
+                if(cars.size() < 10) {
+                    MotorizedVehicle newCar = motorizedVehicleFactory.createMotorizedVehicle();
+                    cars.add(newCar);
+                    addCarImage(newCar);
+                }
             }
         });
 
         frame.getRemoveCarButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Calls method not done yet
+                if(cars.size() > 0){
+                    int index = cars.size()-1;
+                    cars.remove(index);
+                    frame.drawPanel.carImages.remove(index);
+                }
             }
         });
     }
