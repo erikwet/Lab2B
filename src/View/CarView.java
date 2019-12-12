@@ -54,7 +54,6 @@ public class CarView extends JFrame {
 
         this.add(drawPanel);
 
-
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -108,7 +107,7 @@ public class CarView extends JFrame {
         // Get the computer screen resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         // Center the frame
-        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setLocation(dim.width / 2 - this.getWidth()/2, 0);
         // Make the frame visible
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed

@@ -1,7 +1,7 @@
 package Controller;
 import Model.*;
 import View.CarView;
-import View.InfoPanel;
+import View.InfoFrame;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,12 +26,12 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
     public CarView frame;
-    public InfoPanel infoFrame;
+    public InfoFrame infoFrame;
     // A list of cars, modify if needed
     public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
     private IMotorizedVehicleFactory motorizedVehicleFactory;
 
-    public CarController(CarView frame, InfoPanel infoFrame, IMotorizedVehicleFactory motorizedVehicleFactory){
+    public CarController(CarView frame, InfoFrame infoFrame, IMotorizedVehicleFactory motorizedVehicleFactory){
         this.frame = frame;
         this.infoFrame = infoFrame;
         this.motorizedVehicleFactory = motorizedVehicleFactory;
@@ -56,9 +56,9 @@ public class CarController {
                 }
                 frame.drawPanel.moveit(x, y, i);
                 // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
                 //System.out.println(cars.size());
             }
+            frame.drawPanel.repaint();
         }
     }
 
