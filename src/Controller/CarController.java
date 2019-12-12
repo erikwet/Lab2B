@@ -1,13 +1,10 @@
 package Controller;
 import Model.*;
 import View.CarView;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -32,16 +29,7 @@ public class CarController {
 
     public CarController(CarView frame){
         this.frame = frame;
-        this.frame.startAllCarsButton(new StartAllCarsListener());
-        this.frame.stopAllCarsButton(new StopAllCarsListener());
-        this.frame.gasButton(new GasAllCarsListener());
-        this.frame.brakeButton(new BrakeAllCarsListener());
-        this.frame.turboOnButton(new TurboOnListener());
-        this.frame.turboOffButton(new TurboOffListener());
-        this.frame.lowerFlatbedButton(new LowerFlatBedListener());
-        this.frame.raiseFlatbedButton(new RaiseFlatBedListener());
-        this.frame.addCarButton(new AddCarListener());
-        this.frame.removeCarButton(new RemoveCarListener());
+        createActionListeners();
 }
     //methods:
 
@@ -68,74 +56,78 @@ public class CarController {
         }
     }
 
-    private class StartAllCarsListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            startAllCars();
-        }
-    }
+    private void createActionListeners() {
 
-    private class StopAllCarsListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            stopAllCars();
-        }
-    }
+        frame.getGasButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gas(frame.getGasAmount());
+            }
+        });
 
-    private class GasAllCarsListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            gas(frame.gasAmount);
-        }
-    }
+        frame.getBrakeButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                brake(frame.getGasAmount());
+            }
+        });
 
-    private class BrakeAllCarsListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            brake(frame.gasAmount);
-        }
-    }
+        frame.getTurboOnButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setTurboOn();
+            }
+        });
 
-    private class TurboOnListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setTurboOn();
-        }
-    }
+        frame.getTurboOffButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setTurboOff();
+            }
+        });
 
-    private class TurboOffListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setTurboOff();
-        }
-    }
+        frame.getLiftBedButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                raiseFlatbed();
+            }
+        });
 
-    private class LowerFlatBedListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            lowerFlatbed();
-        }
-    }
+        frame.getLowerBedButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lowerFlatbed();
+            }
+        });
 
-    private class RaiseFlatBedListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            raiseFlatbed();
-        }
-    }
+        frame.getStartButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startAllCars();
+            }
+        });
 
-    private class AddCarListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            /*cars.add(motorizedVehicleFactory.createMotorizedVehicle());
-            addCarImage(new Volvo240());*/
-        }
-    }
-    private class RemoveCarListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //Send method to factory
-        }
+        frame.getStopButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopAllCars();
+            }
+        });
+
+        frame.getAddCarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Calls method not done yet
+                cars.add(motorizedVehicleFactory.createMotorizedVehicle());
+            }
+        });
+
+        frame.getRemoveCarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Calls method not done yet
+            }
+        });
     }
 
     // Calls the gas method for each car once
@@ -244,7 +236,7 @@ public class CarController {
         car.setY(Math.max(0, y));
     }
 
-    private void addCarImage(MotorizedVehicle car){
+    /*private void addCarImage(MotorizedVehicle car){
        String image = "pics/" + car.getModelName() + ".jpg";
         System.out.println(image);
         try {
@@ -252,5 +244,5 @@ public class CarController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 }

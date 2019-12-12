@@ -3,7 +3,6 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -20,25 +19,24 @@ public class CarView extends JFrame {
 
     public DrawPanel drawPanel = new DrawPanel(X, Y - 240);
 
-    JPanel controlPanel = new JPanel();
-    JPanel gasPanel = new JPanel();
-    JPanel specialControlPanel = new JPanel();
-    JSpinner gasSpinner = new JSpinner();
-    public int gasAmount = 0;
-    JLabel gasLabel = new JLabel("Amount of gas");
+    private JPanel controlPanel = new JPanel();
+    private JPanel gasPanel = new JPanel();
+    private JPanel specialControlPanel = new JPanel();
+    private JSpinner gasSpinner = new JSpinner();
+    private int gasAmount = 0;
+    private JLabel gasLabel = new JLabel("Amount of gas");
 
-    JButton gasButton = new JButton("Gas");
-    JButton brakeButton = new JButton("Brake");
-    JButton turboOnButton = new JButton("Saab: Turbo on");
-    JButton turboOffButton = new JButton("Saab: Turbo off");
-    JButton liftBedButton = new JButton("Scania: Lift Flatbed");
-    JButton lowerBedButton = new JButton("Scania: Lower Flatbed");
+    private JButton gasButton = new JButton("Gas");
+    private JButton brakeButton = new JButton("Brake");
+    private JButton turboOnButton = new JButton("Saab: Turbo on");
+    private JButton turboOffButton = new JButton("Saab: Turbo off");
+    private JButton liftBedButton = new JButton("Scania: Lift Flatbed");
+    private JButton lowerBedButton = new JButton("Scania: Lower Flatbed");
 
-    JButton addCarButton = new JButton("Add car");
-    JButton removeCarButton = new JButton("Remove car");
-
-    JButton startButton = new JButton("Start all cars");
-    JButton stopButton = new JButton("Stop all cars");
+    private JButton addCarButton = new JButton("Add car");
+    private JButton removeCarButton = new JButton("Remove car");
+    private JButton startButton = new JButton("Start all cars");
+    private JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
     public CarView(String framename) {
@@ -116,43 +114,47 @@ public class CarView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void startAllCarsButton(ActionListener listenForButton) {
-        startButton.addActionListener(listenForButton);
+    public int getGasAmount() {
+        return gasAmount;
     }
 
-    public void stopAllCarsButton(ActionListener listenForButton) {
-        stopButton.addActionListener(listenForButton);
+    public JButton getGasButton() {
+        return gasButton;
     }
 
-    public void gasButton(ActionListener listenForButton) {
-        gasButton.addActionListener(listenForButton);
+    public JButton getBrakeButton() {
+        return brakeButton;
     }
 
-    public void brakeButton(ActionListener listenForButton) {
-        brakeButton.addActionListener(listenForButton);
+    public JButton getTurboOnButton() {
+        return turboOnButton;
     }
 
-    public void turboOffButton(ActionListener listenForButton) {
-        turboOffButton.addActionListener(listenForButton);
+    public JButton getTurboOffButton() {
+        return turboOffButton;
     }
 
-    public void turboOnButton(ActionListener listenForButton) {
-        turboOnButton.addActionListener(listenForButton);
+    public JButton getLiftBedButton() {
+        return liftBedButton;
     }
 
-    public void lowerFlatbedButton(ActionListener listenForButton) {
-        lowerBedButton.addActionListener(listenForButton);
+    public JButton getLowerBedButton() {
+        return lowerBedButton;
     }
 
-    public void raiseFlatbedButton(ActionListener listenForButton) {
-        liftBedButton.addActionListener(listenForButton);
+    public JButton getAddCarButton() {
+        return addCarButton;
     }
 
-    public void addCarButton(ActionListener listenForButton){
-        addCarButton.addActionListener(listenForButton);
+    public JButton getRemoveCarButton() {
+        return removeCarButton;
     }
 
-    public void removeCarButton(ActionListener listenForButton){
-        addCarButton.addActionListener(listenForButton);
+    public JButton getStartButton() {
+        return startButton;
+    }
+
+    public JButton getStopButton() {
+        return stopButton;
     }
 }

@@ -1,10 +1,7 @@
 package Application;
 
 import Controller.CarController;
-import Model.MotorizedVehicle;
-import Model.Saab95;
-import Model.Scania;
-import Model.Volvo240;
+import Model.*;
 import View.CarView;
 
 import javax.imageio.ImageIO;
@@ -16,8 +13,9 @@ public class Main {
         // Instance of this class
         CarView frame = new CarView("Sim 1.0");
         CarController cc = new CarController(frame);
+        MotorizedVehicleFactory test = new MotorizedVehicleFactory();
 
-        /*cc.cars.add(new Volvo240());
+        cc.cars.add(test.createMotorizedVehicle());
         cc.cars.add(new Saab95());
         cc.cars.add(new Scania());
 
@@ -29,7 +27,7 @@ public class Main {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }*/
+        }
 
             // Start the timer
             cc.timer.start();
