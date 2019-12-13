@@ -1,12 +1,13 @@
 package View;
 
+import Controller.IObserver;
 import Model.MotorizedVehicle;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class InfoFrame extends JFrame implements Observer {
+public class InfoFrame extends JFrame implements IObserver {
 
     ArrayList<JLabel> speedLabels = new ArrayList<>();
     ArrayList<JLabel> carLabels = new ArrayList<>();

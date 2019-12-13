@@ -1,6 +1,6 @@
 package Model;
 
-import View.Observable;
+import Controller.Observable;
 
 /**
  * @author Oscar Arvidson and Erik Wetter

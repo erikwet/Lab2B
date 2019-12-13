@@ -1,11 +1,9 @@
-package View;
+package Controller;
 
 import Model.MotorizedVehicle;
-import View.InfoFrame;
-
 import java.util.ArrayList;
 
-public interface Observer {
+ public interface IObserver {
 
     void actOnSpeedChange(ArrayList<MotorizedVehicle> cars);
 

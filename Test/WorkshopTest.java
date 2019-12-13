@@ -10,7 +10,7 @@ public class WorkshopTest {
     Workshop<Volvo240> volvoWorkshop = new Workshop<>(10, 2.5, 3, 6, 35, 45);
     Workshop<Car> carWorkshop = new Workshop<>(10, 2.5, 3, 6, 20, 55);
 
-    Volvo240 volvo = new Volvo240();
+    Volvo240 volvo = new Volvo240(0,0);
     Saab95 saab = new Saab95();
 
     @Test

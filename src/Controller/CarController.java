@@ -2,7 +2,6 @@ package Controller;
 import Model.*;
 import View.CarView;
 import View.InfoFrame;
-import View.Observable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,21 +17,31 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
+/**
+ * @author Oscar Arvidson & Erik Wetter
+ * Class that controls realtionships between main, model and view.
+ */
 public class CarController extends Observable {
-    // member fields:
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     public Timer timer = new Timer(delay, new TimerListener());
 
-    // The frame that represents this instance View of the MVC pattern
+    // The frames that represents this instance View of the MVC pattern
     public CarView frame;
     public InfoFrame infoFrame;
-    // A list of cars, modify if needed
+    // A list of motorizedVehciles
     public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
+    // A factory that creates motorizedVehicles
     private IMotorizedVehicleFactory motorizedVehicleFactory;
 
+    /**
+     *
+     * @param frame An instance of CarView
+     * @param infoFrame An instance if InfoView
+     * @param motorizedVehicleFactory A motorizedVehicleFactory
+     */
     public CarController(CarView frame, InfoFrame infoFrame, IMotorizedVehicleFactory motorizedVehicleFactory){
         this.frame = frame;
         this.infoFrame = infoFrame;
@@ -40,11 +49,13 @@ public class CarController extends Observable {
         createActionListeners();
         addObserver(infoFrame);
 }
-    //methods:
-
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+
+    /**
+     * Class that updates all motorizedVehicles positions in the list car and tells the CarView to update itself
+     */
        private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < cars.size(); i++) {
@@ -67,6 +78,9 @@ public class CarController extends Observable {
         }
     }
 
+    /**
+     * Create all action listeners for the buttons in CarFrame.
+     */
     private void createActionListeners() {
 
         frame.getGasButton().addActionListener(new ActionListener() {
