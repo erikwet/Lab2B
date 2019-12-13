@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 public class Saab95Test {
 
-    Saab95 saab = new Saab95();
+    Saab95 saab = new Saab95(0, 0);
 
     @Test
     public void TurboTest(){

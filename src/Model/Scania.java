@@ -8,8 +8,8 @@ import java.awt.*;
  */
 public class Scania extends FlatbedTruck {
 
-    public Scania() {
-        super(Direction.EAST, 0,250, 2, 500, Color.cyan, "Scania", 2.5, 5, 10, 70);
+    public Scania(double x, double y) {
+        super(Direction.EAST, x, y, 2, 500, Color.cyan, "Scania", 2.5, 5, 10, 70);
     }
 
     /**

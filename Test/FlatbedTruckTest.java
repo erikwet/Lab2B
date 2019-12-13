@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FlatbedTruckTest {
 
-    Scania scania = new Scania();
+    Scania scania = new Scania(0, 0);
 
     @Test
     public void LowerFlatbedTest(){

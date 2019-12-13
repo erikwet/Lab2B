@@ -2,7 +2,6 @@ package Controller;
 import Model.*;
 import View.CarView;
 import View.InfoFrame;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;

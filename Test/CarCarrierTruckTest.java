@@ -6,8 +6,8 @@ public class CarCarrierTruckTest {
 
     CarCarrierTruck MANTGXD38 = new MANTGXD38();
     Volvo240 volvo = new Volvo240(0, 0);
-    Scania scania = new Scania();
-    Saab95 saab = new Saab95();
+    Scania scania = new Scania(0, 0);
+    Saab95 saab = new Saab95(0, 0);
 
     @Test
     public void setCurrentSpeedTest(){

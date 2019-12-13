@@ -9,7 +9,7 @@ import org.junit.Test;
 public class MotorizedVehicleTest {
 
     Volvo240 volvo = new Volvo240(0,0);
-    Saab95 saab = new Saab95();
+    Saab95 saab = new Saab95(0, 0);
 
     @Test
     public void testTurnLeft() {
