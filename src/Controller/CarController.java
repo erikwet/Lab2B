@@ -16,7 +16,7 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController extends Observable{
     // member fields:
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
@@ -36,6 +36,7 @@ public class CarController {
         this.infoFrame = infoFrame;
         this.motorizedVehicleFactory = motorizedVehicleFactory;
         createActionListeners();
+        addObserver(infoFrame);
 }
     //methods:
 
@@ -53,12 +54,14 @@ public class CarController {
                     setInBounds(cars.get(i), frame.drawPanel.carImages.get(i));
                     cars.get(i).oppositeDirection();
                     cars.get(i).startEngine();
+                    CarController.super.notifyObserversSpeed(cars);
                 }
                 frame.drawPanel.moveit(x, y, i);
                 // repaint() calls the paintComponent method of the panel
                 //System.out.println(cars.size());
             }
             frame.drawPanel.repaint();
+
         }
     }
 
@@ -127,6 +130,7 @@ public class CarController {
                     MotorizedVehicle newCar = motorizedVehicleFactory.createMotorizedVehicle();
                     cars.add(newCar);
                     addCarImage(newCar);
+                    CarController.super.notifyObserversListSize(cars);
                 }
             }
         });
@@ -138,6 +142,7 @@ public class CarController {
                     int index = cars.size()-1;
                     cars.remove(index);
                     frame.drawPanel.carImages.remove(index);
+                    CarController.super.notifyObserversListSize(cars);
                 }
             }
         });
@@ -146,10 +151,10 @@ public class CarController {
     // Calls the gas method for each car once
     private void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (MotorizedVehicle car : cars
-                ) {
+        for (MotorizedVehicle car : cars) {
             car.gas(gas);
         }
+        super.notifyObserversSpeed(cars);
     }
 
     /**
@@ -158,10 +163,10 @@ public class CarController {
      */
     private void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (MotorizedVehicle car : cars
-        ) {
+        for (MotorizedVehicle car : cars) {
             car.brake(brake);
         }
+        super.notifyObserversSpeed(cars);
     }
 
     /**
@@ -215,6 +220,7 @@ public class CarController {
         for(MotorizedVehicle car: cars){
             car.stopEngine();
         }
+        super.notifyObserversSpeed(cars);
     }
 
     /**
@@ -224,6 +230,7 @@ public class CarController {
         for(MotorizedVehicle car: cars){
             car.startEngine();
         }
+        super.notifyObserversSpeed(cars);
     }
 
     /**
