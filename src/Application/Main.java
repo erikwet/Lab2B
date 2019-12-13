@@ -4,6 +4,10 @@ import Model.*;
 import View.CarView;
 import View.InfoFrame;
 
+/**
+ * @author Oscar Arvidson & Erik Wetter
+ * Class that contains the main method
+ */
 public class Main {
 
     public static void main(String[] args) {

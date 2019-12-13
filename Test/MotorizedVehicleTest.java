@@ -80,16 +80,17 @@ public class MotorizedVehicleTest {
         assertEquals(100, volvo.getCurrentSpeed(), 0.0001);
 
         volvo.setCurrentSpeed(0);
+        volvo.startEngine();
         volvo.gas(2);
-        assertEquals(1.25, volvo.getCurrentSpeed(), 0.0001);
+        assertEquals(1.35, volvo.getCurrentSpeed(), 0.0001);
 
         saab.setCurrentSpeed(50);
         saab.gas(1);
         assertEquals(51.25, saab.getCurrentSpeed(), 0.0001);
 
         saab.setCurrentSpeed(-50);
-        saab.gas(1);
-        assertEquals(1.25, saab.getCurrentSpeed(), 0.0001);
+        saab.gas(0);
+        assertEquals(0, saab.getCurrentSpeed(), 0.0001);
     }
 
     @Test

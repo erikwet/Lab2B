@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * @author Oscar Arvidson & Erik Wetter
- * Class that controls realtionships between main, model and view.
+ * Class that controls interactions between model, view and the user inputs
  */
 public class CarController extends Observable {
     // The delay (ms) corresponds to 20 updates a sec (hz)
@@ -30,16 +30,15 @@ public class CarController extends Observable {
     // The frames that represents this instance View of the MVC pattern
     public CarView frame;
     public InfoFrame infoFrame;
-    // A list of motorizedVehciles
+    // A list of motorizedVehicles
     public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
     // A factory that creates motorizedVehicles
     private IMotorizedVehicleFactory motorizedVehicleFactory;
 
     /**
-     *
      * @param frame An instance of CarView
      * @param infoFrame An instance if InfoView
-     * @param motorizedVehicleFactory A motorizedVehicleFactory
+     * @param motorizedVehicleFactory An instance of an object that implements IMotorizedVehicleFactory
      */
     public CarController(CarView frame, InfoFrame infoFrame, IMotorizedVehicleFactory motorizedVehicleFactory){
         this.frame = frame;
@@ -48,9 +47,6 @@ public class CarController extends Observable {
         createActionListeners();
         addObserver(infoFrame);
 }
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
 
     /**
      * Class that updates all motorizedVehicles positions in the list car and tells the CarView to update itself
@@ -70,7 +66,6 @@ public class CarController extends Observable {
                 }
                 frame.drawPanel.moveit(x, y, i);
                 // repaint() calls the paintComponent method of the panel
-                //System.out.println(cars.size());
             }
             frame.drawPanel.repaint();
 
@@ -271,6 +266,10 @@ public class CarController extends Observable {
         car.setY(Math.max(0, y));
     }
 
+    /**
+     * Adds an image to carImages based on model name of MotorizedVehicle
+     * @param car A motorized vehicle
+     */
     private void addCarImage(MotorizedVehicle car){
        String image = "pics/" + car.getModelName() + ".jpg";
         System.out.println(image);
