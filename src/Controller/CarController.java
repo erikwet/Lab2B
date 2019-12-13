@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author Oscar Arvidson & Erik Wetter
  * Class that controls interactions between model, view and the user inputs
  */
-public class CarController extends Observable {
+public class CarController implements Observable {
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
@@ -31,7 +31,8 @@ public class CarController extends Observable {
     public CarView frame;
     public InfoFrame infoFrame;
     // A list of motorizedVehicles
-    public ArrayList<MotorizedVehicle> cars = new ArrayList<>();
+    private ArrayList<MotorizedVehicle> cars = new ArrayList<>();
+    private ArrayList<IObserver> observers = new ArrayList<>();
     // A factory that creates motorizedVehicles
     private IMotorizedVehicleFactory motorizedVehicleFactory;
 
@@ -62,7 +63,7 @@ public class CarController extends Observable {
                     setInBounds(cars.get(i), frame.drawPanel.carImages.get(i));
                     cars.get(i).oppositeDirection();
                     cars.get(i).startEngine();
-                    CarController.super.notifyObserversSpeed(cars);
+                    notifyObserversSpeed(cars);
                 }
                 frame.drawPanel.moveit(x, y, i);
                 // repaint() calls the paintComponent method of the panel
@@ -140,7 +141,7 @@ public class CarController extends Observable {
                     MotorizedVehicle newCar = motorizedVehicleFactory.createMotorizedVehicle();
                     cars.add(newCar);
                     addCarImage(newCar);
-                    CarController.super.notifyObserversListSize(cars);
+                    notifyObserversListSize(cars);
                 }
             }
         });
@@ -152,7 +153,7 @@ public class CarController extends Observable {
                     int index = cars.size()-1;
                     cars.remove(index);
                     frame.drawPanel.carImages.remove(index);
-                    CarController.super.notifyObserversListSize(cars);
+                    notifyObserversListSize(cars);
                 }
             }
         });
@@ -164,7 +165,7 @@ public class CarController extends Observable {
         for (MotorizedVehicle car : cars) {
             car.gas(gas);
         }
-        super.notifyObserversSpeed(cars);
+        notifyObserversSpeed(cars);
     }
 
     /**
@@ -176,7 +177,7 @@ public class CarController extends Observable {
         for (MotorizedVehicle car : cars) {
             car.brake(brake);
         }
-        super.notifyObserversSpeed(cars);
+        notifyObserversSpeed(cars);
     }
 
     /**
@@ -230,7 +231,7 @@ public class CarController extends Observable {
         for(MotorizedVehicle car: cars){
             car.stopEngine();
         }
-        super.notifyObserversSpeed(cars);
+        notifyObserversSpeed(cars);
     }
 
     /**
@@ -240,7 +241,22 @@ public class CarController extends Observable {
         for(MotorizedVehicle car: cars){
             car.startEngine();
         }
-        super.notifyObserversSpeed(cars);
+        notifyObserversSpeed(cars);
+    }
+
+    public void addObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    public void notifyObserversSpeed(ArrayList<MotorizedVehicle> cars) {
+        for(IObserver observer : observers) {
+            observer.actOnSpeedChange(cars);
+        }
+    }
+    public void notifyObserversListSize(ArrayList<MotorizedVehicle> cars) {
+        for(IObserver observer : observers) {
+            observer.actOnListSizeChange(cars);
+        }
     }
 
     /**

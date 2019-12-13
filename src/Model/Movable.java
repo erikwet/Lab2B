@@ -6,7 +6,7 @@ import Controller.Observable;
  * @author Oscar Arvidson and Erik Wetter
  * Abstract super class of all movable objects
  */
-public abstract class Movable extends Observable implements IMovable {
+public abstract class Movable implements IMovable {
 
     private Direction currentDirection; // Direction the car is facing
     private double x; // x position of car
@@ -166,6 +166,5 @@ public abstract class Movable extends Observable implements IMovable {
     @Override
     public void setCurrentSpeed(double currentSpeed) {
         this.currentSpeed = currentSpeed;
-
     }
 }
