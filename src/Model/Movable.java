@@ -1,5 +1,7 @@
 package Model;
 
+import View.Observable;
+
 /**
  * @author Oscar Arvidson and Erik Wetter
  * Abstract super class of all movable objects

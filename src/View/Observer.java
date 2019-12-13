@@ -1,5 +1,6 @@
-package Model;
+package View;
 
+import Model.MotorizedVehicle;
 import View.InfoFrame;
 
 import java.util.ArrayList;

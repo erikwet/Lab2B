@@ -1,18 +1,11 @@
-package Model;
+package View;
 
-import View.InfoFrame;
+import Model.MotorizedVehicle;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Observable {
     private ArrayList<Observer> observers = new ArrayList<>();
-
-    /*InfoFrame infoFrame;
-
-    public Observable(InfoFrame infoFrame) {
-        this.infoFrame = infoFrame;
-    }*/
 
     public void addObserver(Observer observer) {
         observers.add(observer);

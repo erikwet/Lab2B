@@ -2,6 +2,8 @@ package Controller;
 import Model.*;
 import View.CarView;
 import View.InfoFrame;
+import View.Observable;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 * modifying the model state and the updating the view.
  */
 
-public class CarController extends Observable{
+public class CarController extends Observable {
     // member fields:
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;

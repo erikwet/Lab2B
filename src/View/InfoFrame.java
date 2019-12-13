@@ -1,13 +1,9 @@
 package View;
 
-import Controller.CarController;
 import Model.MotorizedVehicle;
-import Model.Observable;
-import Model.Observer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
 public class InfoFrame extends JFrame implements Observer {
@@ -20,7 +16,7 @@ public class InfoFrame extends JFrame implements Observer {
 
     private JPanel infoPanel = new JPanel();
 
-    private JLabel carLabel1 = new JLabel("hej");
+    private JLabel carLabel1 = new JLabel();
     private JLabel speedLabel1 = new JLabel();
 
     private JLabel carLabel2 = new JLabel();
