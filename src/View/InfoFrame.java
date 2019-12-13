@@ -7,11 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * @author Oscar Arvidson and Erik Wetter
+ * Class represents a frame that shows information about the model
+ */
+
 public class InfoFrame extends JFrame implements IObserver {
 
+    //List of speedLabels
     ArrayList<JLabel> speedLabels = new ArrayList<>();
+    //List of carLabels
     ArrayList<JLabel> carLabels = new ArrayList<>();
 
+    //Window size
     private static final int X = 800;
     private static final int Y = 200;
 
@@ -51,9 +59,11 @@ public class InfoFrame extends JFrame implements IObserver {
 
     public InfoFrame() {
         initInfoPanel();
-
     }
 
+    /**
+     * Initiate the info panel
+     */
     private void initInfoPanel(){
 
 
@@ -115,6 +125,10 @@ public class InfoFrame extends JFrame implements IObserver {
         this.setVisible(true);
     }
 
+    /**
+     * Updates speedLabels with the speed of a motorized vehicle
+     * @param cars ArrayList with motorizedVehicles
+     */
     @Override
     public void actOnSpeedChange(ArrayList<MotorizedVehicle> cars) {
         for(int i = 0; i < cars.size(); i++) {
@@ -122,6 +136,10 @@ public class InfoFrame extends JFrame implements IObserver {
         }
     }
 
+    /**
+     * Updates carLabels with the list information
+     * @param cars ArrayList with motorizedVehicles
+     */
     @Override
     public void actOnListSizeChange(ArrayList<MotorizedVehicle> cars) {
         for(int i = 0; i < cars.size(); i++) {

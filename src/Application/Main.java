@@ -5,7 +5,7 @@ import View.CarView;
 import View.InfoFrame;
 
 /**
- * @author Oscar Arvidson & Erik Wetter
+ * @author Oscar Arvidson and Erik Wetter
  * Class that contains the main method
  */
 public class Main {

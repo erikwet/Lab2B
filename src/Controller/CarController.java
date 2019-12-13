@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 
 /**
- * @author Oscar Arvidson & Erik Wetter
+ * @author Oscar Arvidson and Erik Wetter
  * Class that controls interactions between model, view and the user inputs
  */
 public class CarController implements Observable {
